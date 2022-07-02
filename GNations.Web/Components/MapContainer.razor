@@ -1,0 +1,38 @@
+﻿@using GNations.Resources.Images
+<div class="map-container">
+    <hr />
+    map
+    <div class="continent">
+        
+        @((MarkupString)markup)
+        
+    </div>
+    <hr />
+</div>
+
+
+@code {
+
+    MapManager _mapManager = new MapManager();
+    string _continentCss => $"";
+    string markup = string.Empty;
+
+    [JSInvokable]
+    public static void HandleMapClick()
+    {
+        var x = 1;
+    }
+
+    protected override void OnInitialized()
+    {
+        LoadContinents();
+        //_mapManager.BreakMe();
+
+    }
+
+    public void LoadContinents()
+    {
+        markup = ImageRepository.GetContinentMask();
+        var x = 1;
+    }
+}
