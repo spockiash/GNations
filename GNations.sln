@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GNations.Web", "GNations.Web\GNations.Web.csproj", "{3952E239-1A6F-4DCE-B80D-4EFBE3990BF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GNations.Resources", "GNations.Resources\GNations.Resources.csproj", "{3FC39968-338F-4C0B-B2CB-6979AAAE31C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GNations.Resources", "GNations.Resources\GNations.Resources.csproj", "{3FC39968-338F-4C0B-B2CB-6979AAAE31C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GNations.Dto", "GNations.Dto\GNations.Dto.csproj", "{87F748B1-706E-4119-AC2A-9D93AFBA6A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3FC39968-338F-4C0B-B2CB-6979AAAE31C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FC39968-338F-4C0B-B2CB-6979AAAE31C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FC39968-338F-4C0B-B2CB-6979AAAE31C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87F748B1-706E-4119-AC2A-9D93AFBA6A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87F748B1-706E-4119-AC2A-9D93AFBA6A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87F748B1-706E-4119-AC2A-9D93AFBA6A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87F748B1-706E-4119-AC2A-9D93AFBA6A83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

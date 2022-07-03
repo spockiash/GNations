@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/site.css",
+    "inputFile": "wwwroot/css/site.scss"
+  },
+  {
+    "outputFile": "wwwroot/scripts/MapControlsObsolete.es5.js",
+    "inputFile": "wwwroot/scripts/MapControlsObsolete.js"
+  },
+  {
+    "outputFile": "wwwroot/scripts/MapControls.es5.js",
+    "inputFile": "wwwroot/scripts/MapControls.js"
+  }
+]

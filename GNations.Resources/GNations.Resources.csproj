@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GNations.Dto\GNations.Dto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Images\MapResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

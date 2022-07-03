@@ -1,13 +1,38 @@
-﻿@using GNations.Resources.Images
-<div class="map-container">
-    <hr />
-    map
-    <div class="continent">
-        
-        @((MarkupString)markup)
-        
+﻿@using GNations.Dto
+@using GNations.Resources.Images
+
+<div class="game-container">
+
+    <div class="menu-nav menu-nav-up">
+         <button type="button" class="btn-nav-default">Menu 1</button>
+         <button type="button" class="btn-nav-default">Menu 2</button>
+         <button type="button" class="btn-nav-default">Menu 3</button>
+         <button type="button" class="btn-nav-default">Menu 4</button>
     </div>
-    <hr />
+
+    <div class="map-container">
+
+
+        @foreach(var item in _continents)
+        {
+            if(!string.IsNullOrEmpty(item.SvgMarkup))
+            {
+                <div class="continent @item.StyleClas">
+        
+                    @((MarkupString)item.SvgMarkup)
+        
+                </div>
+            }
+        }
+
+    </div>
+
+        <div class="menu-nav menu-nav-up">
+         <button type="button" class="btn-nav-default">Menu 1</button>
+         <button type="button" class="btn-nav-default">Menu 2</button>
+         <button type="button" class="btn-nav-default">Menu 3</button>
+         <button type="button" class="btn-nav-default">Menu 4</button>
+    </div>
 </div>
 
 
@@ -16,9 +41,10 @@
     MapManager _mapManager = new MapManager();
     string _continentCss => $"";
     string markup = string.Empty;
+    List<ContinentImageDto> _continents = new List<ContinentImageDto>();
 
     [JSInvokable]
-    public static void HandleMapClick()
+    public static void HandleMapClick(int param)
     {
         var x = 1;
     }
@@ -32,7 +58,7 @@
 
     public void LoadContinents()
     {
-        markup = ImageRepository.GetContinentMask();
+        _continents = ImageRepository.GetContinents().ToList();
         var x = 1;
     }
 }

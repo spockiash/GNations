@@ -83,9 +83,9 @@ namespace GNations.Resources.Images {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] C2_Out {
+        internal static byte[] Continent2 {
             get {
-                object obj = ResourceManager.GetObject("C2_Out", resourceCulture);
+                object obj = ResourceManager.GetObject("Continent2", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -93,19 +93,9 @@ namespace GNations.Resources.Images {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] C3_Out {
+        internal static byte[] Continent3 {
             get {
-                object obj = ResourceManager.GetObject("C3_Out", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Continent1_blank {
-            get {
-                object obj = ResourceManager.GetObject("Continent1_blank", resourceCulture);
+                object obj = ResourceManager.GetObject("Continent3", resourceCulture);
                 return ((byte[])(obj));
             }
         }

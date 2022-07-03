@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GNations.Dto\GNations.Dto.csproj" />
     <ProjectReference Include="..\GNations.Resources\GNations.Resources.csproj" />
   </ItemGroup>
 

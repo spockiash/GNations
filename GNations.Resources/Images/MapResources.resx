@@ -124,13 +124,10 @@
   <data name="C1_mask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>C1_mask.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="C2_Out" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>C2_Out.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Continent2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Continent2.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="C3_Out" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>C3_Out.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Continent1_blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Continent1_blank.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Continent3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Continent3.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
