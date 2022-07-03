@@ -1,0 +1,16 @@
+﻿@((MarkupString)_gridMarkup);
+
+@code {
+    private string _gridMarkup = string.Empty;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+
+
+    public void RefreshGrid(string gridMarkup)
+    {
+        _gridMarkup = gridMarkup;
+        StateHasChanged();
+    }
+}

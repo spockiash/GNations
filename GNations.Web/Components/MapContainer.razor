@@ -1,7 +1,19 @@
 ﻿@using GNations.Dto
 @using GNations.Resources.Images
+@using GNations.Web.Models
+@using GNations.Web.Services
+@using Newtonsoft.Json
+@inject BrowserService Service
 
 <div class="game-container">
+
+    
+@*    <h1>Window Dimensions</h1>
+
+    <p>Window Height: @Height</p>
+    <p>Window Width: @Width</p>
+
+    <button @onclick="GetDimensions">Get Dimensions</button>*@
 
     <div class="menu-nav menu-nav-up">
          <button type="button" class="btn-nav-default">Menu 1</button>
@@ -12,6 +24,7 @@
 
     <div class="map-container">
 
+        <MapGrid @ref="ChildComponent">@_mapGridMarkup</MapGrid>
 
         @foreach(var item in _continents)
         {
@@ -37,28 +50,68 @@
 
 
 @code {
-
-    MapManager _mapManager = new MapManager();
     string _continentCss => $"";
     string markup = string.Empty;
+    public string _mapGridMarkup = string.Empty;
     List<ContinentImageDto> _continents = new List<ContinentImageDto>();
 
-    [JSInvokable]
-    public static void HandleMapClick(int param)
-    {
-        var x = 1;
-    }
+    public int Height { get; set; }
+    public int Width { get; set; }
+
+    public int MapTop { get; set; }
+    public int MapLeft { get; set; }
+
+    public int MapHeight { get; set; }
+    public int MapWidth { get; set; }
+
+    protected MapGrid? ChildComponent;
+
 
     protected override void OnInitialized()
     {
         LoadContinents();
-        //_mapManager.BreakMe();
+    }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        await Service.ResizeMap();
+        await GetDimensions();
+        await GetMapPosition();
+        SetMapDimensions();
+        InitializeGrid();
+    }
+
+    public void SetMapDimensions()
+    {
+        var mapDimensions = MapManager.GetMapDimensions(Width, Height);
+        MapWidth = mapDimensions.Item1;
+        MapHeight = mapDimensions.Item2;
+    }
+
+    public async Task GetDimensions() {
+        var dimension = await Service.GetDimensions();
+        Height = dimension.Height;
+        Width = dimension.Width;
+    }
+
+    public async Task GetMapPosition() {
+        var position = await Service.GetMapPosition();
+        MapTop = position.Top;
+        MapLeft = position.Left;
+    }
+
+    public void InitializeGrid()
+    {
+        _mapGridMarkup = MapManager.GetMapGrid(MapWidth, MapHeight, MapTop, MapLeft);
+        if(ChildComponent != null)
+        {
+            ChildComponent.RefreshGrid(_mapGridMarkup);
+        }
     }
 
     public void LoadContinents()
     {
         _continents = ImageRepository.GetContinents().ToList();
-        var x = 1;
     }
 }

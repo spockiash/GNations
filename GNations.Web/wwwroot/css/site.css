@@ -7,10 +7,14 @@
 }
 
 .map-container {
-  height: 690px;
+  height: max-content;
+  width: max-content;
+  min-height: 480px;
+  min-width: 640px;
+  position: relative;
 }
 .map-container .continent {
-  position: fixed;
+  position: absolute;
 }
 .map-container .continent-c2 {
   bottom: 355px;

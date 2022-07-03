@@ -9,10 +9,16 @@ body {
 }
 
 .map-container {
-    height: 690px;
+    height: max-content;
+    width: max-content;
+
+    min-height: 480px;
+    min-width: 640px;
+
+    position: relative;
 
     .continent {
-        position: fixed;
+        position: absolute;
     }
 
     .continent-c2 {

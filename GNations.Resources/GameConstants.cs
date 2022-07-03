@@ -10,5 +10,8 @@ namespace GNations.Resources
     {
         public const int BuildLimit = 8;
         public const decimal StartingBudget = 1000m;
+
+        public const int gridVerticalLines = 18;
+        public const int gridHorizontalLines = 12;
     }
 }
