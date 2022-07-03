@@ -99,5 +99,25 @@ namespace GNations.Resources.Images {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] icon_anchor {
+            get {
+                object obj = ResourceManager.GetObject("icon_anchor", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] icon_waypoint {
+            get {
+                object obj = ResourceManager.GetObject("icon_waypoint", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

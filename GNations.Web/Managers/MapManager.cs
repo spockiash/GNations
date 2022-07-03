@@ -11,6 +11,27 @@ namespace GNations.Web.Managers
             return new Tuple<int, int>(width, (int)Math.Round(newHeight));
         }
 
+        public static string GetWaypointLines(int width, int heigth)
+        {
+            var waypoints = ImageRepository.GetWaypoints();
+
+            var sb = new StringBuilder();
+            sb.Append($"<svg viewBox='0 0 {width} {heigth}' xmlns='http://www.w3.org/2000/svg'>");
+            sb.Append("<g fill='black' stroke='black' stroke-width='0.25'>");
+
+            foreach(var point in waypoints)
+            {
+
+            }
+
+            sb.Append("</g>");
+            sb.Append("</svg>");
+
+
+
+            return string.Empty;
+        }
+
         public static string GetMapGrid(int width, int heigth, int upperPos, int leftPos)
         {
             var cellHeight = heigth / GameConstants.gridHorizontalLines;

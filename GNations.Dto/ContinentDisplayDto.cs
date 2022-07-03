@@ -1,6 +1,6 @@
 ﻿namespace GNations.Dto
 {
-    public class ContinentImageDto
+    public class ContinentDisplayDto
     {
         public int EnumNo { get; set; }
         public string? SvgMarkup { get; set; }

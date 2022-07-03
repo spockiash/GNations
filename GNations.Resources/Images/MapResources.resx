@@ -130,4 +130,10 @@
   <data name="Continent3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Continent3.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="icon_anchor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_anchor.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="icon_waypoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_waypoint.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

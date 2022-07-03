@@ -1,4 +1,5 @@
 ﻿@using GNations.Dto
+@using GNations.Resources.Helpers
 @using GNations.Resources.Images
 @using GNations.Web.Models
 @using GNations.Web.Services
@@ -38,6 +39,20 @@
             }
         }
 
+        @foreach(var port in _harbors)
+        {
+            <div class="harbor @port.StyleClass">
+                @((MarkupString)port.SvgMarkup);
+            </div>
+        }
+
+        @foreach(var point in _waypoints)
+        {
+            <div class="waypoint @point.StyleClass">
+                @((MarkupString)point.SvgMarkup);
+            </div>
+        }
+
     </div>
 
         <div class="menu-nav menu-nav-up">
@@ -53,7 +68,10 @@
     string _continentCss => $"";
     string markup = string.Empty;
     public string _mapGridMarkup = string.Empty;
-    List<ContinentImageDto> _continents = new List<ContinentImageDto>();
+    List<ContinentDisplayDto> _continents = new List<ContinentDisplayDto>();
+    List<HarborDisplayDto> _harbors = new List<HarborDisplayDto>();
+    List<WaypointDisplayDto> _waypoints = new List<WaypointDisplayDto>();
+
 
     public int Height { get; set; }
     public int Width { get; set; }
@@ -70,6 +88,8 @@
     protected override void OnInitialized()
     {
         LoadContinents();
+        LoadHarbors();
+        LoadWaypoints();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -113,5 +133,16 @@
     public void LoadContinents()
     {
         _continents = ImageRepository.GetContinents().ToList();
+    }
+
+    public void LoadHarbors()
+    {
+        _harbors = ImageRepository.GetHarbors();
+    }
+
+    public void LoadWaypoints()
+    {
+        _waypoints = ImageRepository.GetWaypoints();
+        WaypointHelper.GetWaypointLineCoordinates(_waypoints);
     }
 }

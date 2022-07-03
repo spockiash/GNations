@@ -11,11 +11,42 @@ body {
 .map-container {
     height: max-content;
     width: max-content;
-
     min-height: 480px;
     min-width: 640px;
-
     position: relative;
+
+    .waypoint {
+        position: absolute;
+    }
+
+    .waypoint-1 {
+        top: 250px;
+        left: 156px;
+    }
+
+    .waypoint-2 {
+        top: 379px;
+        left: 217px;
+    }
+
+    .waypoint-3 {
+        top: 378px;
+        left: 385px;
+    }
+
+    .harbor {
+        position: absolute;
+    }
+
+    .harbor-1 {
+        top: 171px;
+        left: 208px;
+    }
+
+    .harbor-2 {
+        top: 300px;
+        left: 400px;
+    }
 
     .continent {
         position: absolute;
