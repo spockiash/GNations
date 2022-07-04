@@ -2,6 +2,12 @@
   margin: 0px !important;
 }
 
+.waypointlines {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 .menu-nav {
   display: flex;
 }

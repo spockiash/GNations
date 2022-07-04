@@ -58,5 +58,26 @@ namespace GNations.Web.Managers
 
             return sb.ToString();
         }
+    
+        public static string GetWaypointLines(List<Tuple<int, int, int, int>> coordinates, int width, int heigth)
+        {
+            var sb = new StringBuilder();
+            sb.Append($"<svg height='{heigth}' width='{width}' viewBox='0 0 {width} {heigth}' xmlns='http://www.w3.org/2000/svg'>");
+            sb.Append("<g fill='black' stroke='black' stroke-width='0.25'>");
+            //number of vertical cells
+            foreach(var coord in coordinates)
+            {
+                var x0 = coord.Item1;
+                var y0 = coord.Item2;
+                var x1 = coord.Item3;
+                var y1 = coord.Item4;
+
+                sb.Append($"<line x1='{x0}' y1='{y0}' x2='{x1}' y2='{y1}'/>");
+            }
+            sb.Append("</g>");
+            sb.Append("</svg>");
+
+            return sb.ToString();
+        }
     }
 }
