@@ -13,5 +13,8 @@ namespace GNations.Resources
 
         public const int gridVerticalLines = 18;
         public const int gridHorizontalLines = 12;
+
+        public const int RelativeTopSize = 300;
+        public const int RelativeLeftSize = 400;
     }
 }

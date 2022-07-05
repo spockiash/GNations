@@ -87,6 +87,7 @@
 
     protected override void OnInitialized()
     {
+        SetMapDimensions();
         LoadContinents();
         LoadHarbors();
         LoadWaypoints();
@@ -99,6 +100,7 @@
         await GetDimensions();
         await GetMapPosition();
         SetMapDimensions();
+        RepositionContinents();
         InitializeGrid();
     }
 
@@ -128,6 +130,12 @@
         {
             ChildComponent.RefreshGrid(_mapGridMarkup);
         }
+    }
+
+    public void RepositionContinents()
+    {
+        _continents = MapManager.RecalculateContinentPositions(_continents, MapWidth, MapHeight).ToList();
+        var x = 15;
     }
 
     public void LoadContinents()

@@ -95,15 +95,19 @@ namespace GNations.Resources
             var result = new List<ContinentDisplayDto>();
             var styleClasses = GetStyleClassesDictionary();
 
-            result.Add(new ContinentDisplayDto 
-            { 
+            result.Add(new ContinentDisplayDto
+            {
                 SvgMarkup = Encoding.Default.GetString(MapResources.Continent2),
                 StyleClas = styleClasses.GetValueOrDefault(2),
+                RelativeTop = 50,
+                RelativeLeft = 50,
                 EnumNo = 2 });
             result.Add(new ContinentDisplayDto 
             {
                 SvgMarkup = Encoding.Default.GetString(MapResources.Continent3),
                 StyleClas = styleClasses.GetValueOrDefault(3),
+                RelativeTop= 200,
+                RelativeLeft = 200,
                 EnumNo = 3 });
 
             return result;

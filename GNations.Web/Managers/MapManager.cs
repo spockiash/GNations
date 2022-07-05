@@ -1,4 +1,6 @@
-﻿using GNations.Resources;
+﻿using GNations.Dto;
+using GNations.Resources;
+using GNations.Resources.Helpers;
 using System.Text;
 
 namespace GNations.Web.Managers
@@ -9,6 +11,17 @@ namespace GNations.Web.Managers
         {
             var newHeight = height * 0.85;
             return new Tuple<int, int>(width, (int)Math.Round(newHeight));
+        }
+
+        public static IEnumerable<ContinentDisplayDto> RecalculateContinentPositions(IList<ContinentDisplayDto> continents, int width, int heigth)
+        {
+            foreach(var continent in continents)
+            {
+                var newPosition = DisplayHelper.CalculateRelativePosition(continent.RelativeTop, continent.RelativeLeft, width, heigth);
+                continent.PositionTop = newPosition.Item1;
+                continent.PositionLeft = newPosition.Item2;
+                yield return continent;
+            }
         }
 
         public static string GetWaypointLines(int width, int heigth)
