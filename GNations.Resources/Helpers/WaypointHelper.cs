@@ -1,4 +1,4 @@
-﻿using GNations.Dto;
+﻿using GNations.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace GNations.Resources.Helpers
 {
     public static class WaypointHelper
     {
-        public static void GetWaypointLineCoordinates(IList<WaypointDisplayDto> waypoints)
+        public static void GetWaypointLineCoordinates(IList<WaypointDisplayModel> waypoints)
         {
             var lines = new List<string>();
 

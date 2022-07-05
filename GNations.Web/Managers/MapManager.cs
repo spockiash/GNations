@@ -1,4 +1,4 @@
-﻿using GNations.Dto;
+﻿using GNations.Models;
 using GNations.Resources;
 using GNations.Resources.Helpers;
 using System.Text;
@@ -13,7 +13,7 @@ namespace GNations.Web.Managers
             return new Tuple<int, int>(width, (int)Math.Round(newHeight));
         }
 
-        public static IEnumerable<ContinentDisplayDto> RecalculateContinentPositions(IList<ContinentDisplayDto> continents, int width, int heigth)
+        public static IEnumerable<ContinentDisplayModel> RecalculateContinentPositions(IList<ContinentDisplayModel> continents, int width, int heigth)
         {
             foreach(var continent in continents)
             {

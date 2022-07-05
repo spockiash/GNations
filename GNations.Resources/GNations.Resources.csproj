@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GNations.Dto\GNations.Dto.csproj" />
+    <ProjectReference Include="..\GNations.Dto\GNations.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

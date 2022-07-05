@@ -1,10 +1,10 @@
-﻿namespace GNations.Dto
+﻿namespace GNations.Models
 {
-    public class ContinentDisplayDto
+    public class ContinentDisplayModel
     {
         public int EnumNo { get; set; }
-        public string? SvgMarkup { get; set; }
-        public string? StyleClas { get; set; }
+        public string? SvgMarkup { get; set ; }
+        public string? StyleAttribute { get; set; }
         //Relative top is initialized as range 0-300, program calculations can exceed that range
         public int RelativeTop { get; set; }
         //Relative left is initialized as range 0-400, program calculations can exceed that range

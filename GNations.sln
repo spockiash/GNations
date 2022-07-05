@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GNations.Web", "GNations.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GNations.Resources", "GNations.Resources\GNations.Resources.csproj", "{3FC39968-338F-4C0B-B2CB-6979AAAE31C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GNations.Dto", "GNations.Dto\GNations.Dto.csproj", "{87F748B1-706E-4119-AC2A-9D93AFBA6A83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GNations.Models", "GNations.Dto\GNations.Models.csproj", "{87F748B1-706E-4119-AC2A-9D93AFBA6A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

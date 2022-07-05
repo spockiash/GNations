@@ -1,4 +1,4 @@
-﻿using GNations.Dto;
+﻿using GNations.Models;
 using GNations.Resources.Images;
 using System;
 using System.Collections.Generic;
@@ -21,12 +21,12 @@ namespace GNations.Resources
             return Encoding.Default.GetString(MapResources.icon_waypoint);
         }
 
-        public static List<WaypointDisplayDto> GetWaypoints()
+        public static List<WaypointDisplayModel> GetWaypoints()
         {
             var waypointIcon = GetWaypointIcon();
-            return new List<WaypointDisplayDto>
+            return new List<WaypointDisplayModel>
             {
-                new WaypointDisplayDto
+                new WaypointDisplayModel
                 {
                     Id = 1,
                     Neighbors = new int[] { 2 },
@@ -35,7 +35,7 @@ namespace GNations.Resources
                     Left = 208,
                     StyleClass = GetMatchedClass(1,"waypoint")
                 },
-                new WaypointDisplayDto
+                new WaypointDisplayModel
                 {
                     Id = 2,
                     Neighbors = new int[] { 1, 3 },
@@ -44,7 +44,7 @@ namespace GNations.Resources
                     Left = 400,
                     StyleClass = GetMatchedClass(2,"waypoint")
                 },
-                new WaypointDisplayDto
+                new WaypointDisplayModel
                 {
                     Id = 3,
                     Neighbors = new int[] { 2 },
@@ -66,12 +66,12 @@ namespace GNations.Resources
             return $"{classSpecifier}-{id}";
         }
 
-        public static List<HarborDisplayDto> GetHarbors()
+        public static List<HarborDisplayModel> GetHarbors()
         {
             var harborIcon = GetHarborICon();
-            return new List<HarborDisplayDto>
+            return new List<HarborDisplayModel>
             {
-                new HarborDisplayDto
+                new HarborDisplayModel
                 {
                     Id = 1,
                     SvgMarkup = harborIcon,
@@ -79,7 +79,7 @@ namespace GNations.Resources
                     Left = 208,
                     StyleClass = GetMatchedClass(1,"harbor")
                 },
-                new HarborDisplayDto
+                new HarborDisplayModel
                 {
                     Id = 2,
                     SvgMarkup = harborIcon,
@@ -90,22 +90,22 @@ namespace GNations.Resources
             };
         }
 
-        public static IList<ContinentDisplayDto> GetContinents()
+        public static IList<ContinentDisplayModel> GetContinents()
         {
-            var result = new List<ContinentDisplayDto>();
+            var result = new List<ContinentDisplayModel>();
             var styleClasses = GetStyleClassesDictionary();
 
-            result.Add(new ContinentDisplayDto
+            result.Add(new ContinentDisplayModel
             {
                 SvgMarkup = Encoding.Default.GetString(MapResources.Continent2),
-                StyleClas = styleClasses.GetValueOrDefault(2),
+                StyleAttribute = string.Empty,
                 RelativeTop = 50,
                 RelativeLeft = 50,
                 EnumNo = 2 });
-            result.Add(new ContinentDisplayDto 
+            result.Add(new ContinentDisplayModel 
             {
                 SvgMarkup = Encoding.Default.GetString(MapResources.Continent3),
-                StyleClas = styleClasses.GetValueOrDefault(3),
+                StyleAttribute = string.Empty,
                 RelativeTop= 200,
                 RelativeLeft = 200,
                 EnumNo = 3 });
@@ -118,7 +118,7 @@ namespace GNations.Resources
         {
            return new Dictionary<int, string>()
             {
-                { 2, "continent-c2" },
+                { 2, "style='position: absolute'" },
                 { 3, "continent-c3" }
             };
         }

@@ -1,0 +1,25 @@
+﻿@using GNations.Models
+@if(Continents != null)
+{
+    foreach(var item in Continents)
+    {
+        if (!string.IsNullOrEmpty(item.SvgMarkup))
+        {
+            <div class="continent" style="@item.StyleAttribute">
+                @((MarkupString)@item.SvgMarkup)
+            </div>
+        }
+    }
+}
+
+
+
+@code {
+    [Parameter]
+    public List<ContinentDisplayModel>? Continents { get; set; }
+
+    public void RefreshGrid()
+    {
+        StateHasChanged();
+    }
+}

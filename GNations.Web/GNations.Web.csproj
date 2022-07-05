@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GNations.Dto\GNations.Dto.csproj" />
+    <ProjectReference Include="..\GNations.Dto\GNations.Models.csproj" />
     <ProjectReference Include="..\GNations.Resources\GNations.Resources.csproj" />
   </ItemGroup>
 
