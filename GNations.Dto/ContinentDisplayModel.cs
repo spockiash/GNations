@@ -14,5 +14,7 @@
         //Value is not initialized, only for display calculations
         public int PositionLeft { get; set; }
         public float Scale { get; set; }
+        public int BaseWidth { get; set; }
+        public int BaseHeight { get; set; }
     }
 }

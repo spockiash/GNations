@@ -101,12 +101,16 @@ namespace GNations.Resources
                 StyleAttribute = string.Empty,
                 RelativeTop = 50,
                 RelativeLeft = 50,
+                BaseWidth = 120,
+                BaseHeight = 74,
                 EnumNo = 2 });
             result.Add(new ContinentDisplayModel 
             {
                 SvgMarkup = Encoding.Default.GetString(MapResources.Continent3),
                 StyleAttribute = string.Empty,
                 RelativeTop= 200,
+                BaseWidth = 120,
+                BaseHeight = 66,
                 RelativeLeft = 200,
                 EnumNo = 3 });
 
