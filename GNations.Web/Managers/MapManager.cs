@@ -15,9 +15,11 @@ namespace GNations.Web.Managers
 
         public static IEnumerable<ContinentDisplayModel> RecalculateContinentPositions(IList<ContinentDisplayModel> continents, int width, int heigth)
         {
-            foreach(var continent in continents)
+            var scale = DisplayHelper.CalculateRelativeTransformation(width, heigth);
+            foreach (var continent in continents)
             {
                 var newPosition = DisplayHelper.CalculateRelativePosition(continent.RelativeTop, continent.RelativeLeft, width, heigth);
+                continent.Scale = scale;
                 continent.PositionTop = newPosition.Item1;
                 continent.PositionLeft = newPosition.Item2;
                 yield return continent;

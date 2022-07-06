@@ -130,12 +130,12 @@
         _continents = MapManager.RecalculateContinentPositions(_continents, MapWidth, MapHeight).ToList();
         _continents = DisplayHelper.AssignStyleAttributes(_continents).ToList();
 
+        var s = DisplayHelper.GetStyleAttributesForScaling(0.15f);
+
         if(ContinentComponent != null)
         {
             ContinentComponent.RefreshGrid();
         }
-
-        var x = 15;
     }
 
     public void LoadContinents()

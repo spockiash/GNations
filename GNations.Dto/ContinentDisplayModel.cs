@@ -13,5 +13,6 @@
         public int PositionTop { get; set; }
         //Value is not initialized, only for display calculations
         public int PositionLeft { get; set; }
+        public float Scale { get; set; }
     }
 }
