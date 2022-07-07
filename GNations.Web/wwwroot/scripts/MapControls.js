@@ -19,8 +19,8 @@ $(window).bind("resize", function () {
 });
 
 function ResizeMap(args) {
-    console.log(args.width);
-    console.log(args.height);
+    //console.log(args.width);
+    //console.log(args.height);
     $(".map-container").width(args.width);
     $(".map-container").height(args.height);
     //SetMapHeight(args.height);

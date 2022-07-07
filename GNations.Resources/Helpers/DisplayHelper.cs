@@ -16,12 +16,12 @@ namespace GNations.Resources.Helpers
             if(viewportRatio <  0.65f)
             {
                 float heigth = (float)viewportWidth * 0.5625f;
-                return (int)Math.Round(heigth * 0.85f);
+                return (int)Math.Round(heigth * 0.75f);
             }
             else
             {
                 float heigth = (float)viewportWidth * 0.75f;
-                return (int)Math.Round(heigth * 0.85f);
+                return (int)Math.Round(heigth * 0.75f);
             }
         }
         public static Tuple<int, int> CalculateRelativePosition(int relativeTop, int relativeLeft, int containerWidth, int containerHeight)

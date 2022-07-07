@@ -5,10 +5,17 @@
     <button type="button" class="btn-nav-default">Add</button>
 </div>
 
-<div class="editor-container" id="editor" onclick="Test()">
-    k
+<div @onclick="ReportPointerLocation" class="editor-container" id="editor">
+    @mousePointerMessage
 </div>
 
 @code {
+
+    private string? mousePointerMessage;
+
+    private void ReportPointerLocation(MouseEventArgs e)
+    {
+        mousePointerMessage = $"Mouse coordinates: {e.OffsetX}:{e.OffsetY}";
+    }
 
 }
