@@ -64,13 +64,15 @@
     List<HarborDisplayModel> _harbors = new List<HarborDisplayModel>();
     List<WaypointDisplayModel> _waypoints = new List<WaypointDisplayModel>();
 
+    //viewport size
+    public int ViewportHeight { get; set; }
+    public int ViewportWidth { get; set; }
 
-    public int Height { get; set; }
-    public int Width { get; set; }
-
+    //map position in viewport
     public int MapTop { get; set; }
     public int MapLeft { get; set; }
 
+    //these values control map rendering
     public int MapHeight { get; set; }
     public int MapWidth { get; set; }
 
@@ -80,7 +82,6 @@
 
     protected override void OnInitialized()
     {
-        SetMapDimensions();
         LoadContinents();
         LoadHarbors();
         LoadWaypoints();
@@ -89,25 +90,25 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         base.OnAfterRender(firstRender);
-        await Service.ResizeMap();
-        await GetDimensions();
-        await GetMapPosition();
+        await GetViewportDimensions();
         SetMapDimensions();
+        await Service.ResizeMap(MapWidth, MapHeight);
+        await GetMapPosition();
         RepositionContinents();
         InitializeGrid();
     }
 
     public void SetMapDimensions()
     {
-        var mapDimensions = MapManager.GetMapDimensions(Width, Height);
+        var mapDimensions = MapManager.GetMapDimensions(ViewportWidth, ViewportHeight);
         MapWidth = mapDimensions.Item1;
         MapHeight = mapDimensions.Item2;
     }
 
-    public async Task GetDimensions() {
+    public async Task GetViewportDimensions() {
         var dimension = await Service.GetDimensions();
-        Height = dimension.Height;
-        Width = dimension.Width;
+        ViewportHeight = dimension.Height;
+        ViewportWidth = dimension.Width;
     }
 
     public async Task GetMapPosition() {
@@ -130,7 +131,7 @@
         _continents = MapManager.RecalculateContinentPositions(_continents, MapWidth, MapHeight).ToList();
         _continents = DisplayHelper.AssignStyleAttributes(_continents).ToList();
 
-        var s = DisplayHelper.GetStyleAttributesForScaling(0.15f);
+        //var s = DisplayHelper.GetStyleAttributesForScaling(0.15f);
 
         if(ContinentComponent != null)
         {

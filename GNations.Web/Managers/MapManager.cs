@@ -9,8 +9,8 @@ namespace GNations.Web.Managers
     {
         public static Tuple<int, int> GetMapDimensions(int width, int height)
         {
-            var newHeight = height * 0.85;
-            return new Tuple<int, int>(width, (int)Math.Round(newHeight));
+            var newHeight = DisplayHelper.MapSizeResolver(width, height);
+            return new Tuple<int, int>(width, newHeight);
         }
 
         public static IEnumerable<ContinentDisplayModel> RecalculateContinentPositions(IList<ContinentDisplayModel> continents, int width, int heigth)
@@ -19,7 +19,8 @@ namespace GNations.Web.Managers
             foreach (var continent in continents)
             {
                 var newPosition = DisplayHelper.CalculateRelativePosition(continent.RelativeTop, continent.RelativeLeft, width, heigth);
-                continent.Scale = scale;
+                continent.ScaleTop = scale.Item1;
+                continent.ScaleLeft = scale.Item2;
                 continent.PositionTop = newPosition.Item1;
                 continent.PositionLeft = newPosition.Item2;
                 yield return continent;

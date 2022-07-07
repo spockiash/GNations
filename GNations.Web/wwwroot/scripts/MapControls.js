@@ -18,10 +18,13 @@ $(window).bind("resize", function () {
     ResizeMap();
 });
 
-function ResizeMap() {
-    var viewportSize = getDimensions();
-    SetMapHeight(viewportSize.height);
-    SetMapWidth(viewportSize.width);
+function ResizeMap(args) {
+    console.log(args.width);
+    console.log(args.height);
+    $(".map-container").width(args.width);
+    $(".map-container").height(args.height);
+    //SetMapHeight(args.height);
+    //SetMapWidth(args.width);
 }
 
 function GetMapPosition() {
@@ -34,12 +37,11 @@ function GetMapPosition() {
 
 function SetMapHeight(currentHeight) {
     var minHeight = 480;
-    var setHeigth = Math.round(currentHeight * 0.85);
     if (setHeigth < minHeight) {
         $(".map-container").height(minHeight);
     }
     else {
-        $(".map-container").height(Math.round(currentHeight * 0.85));
+        $(".map-container").height(currentHeight);
     }
 }
 

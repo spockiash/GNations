@@ -17,9 +17,9 @@ namespace GNations.Web.Services
             return await _js.InvokeAsync<BrowserDimension>("getDimensions");
         }
 
-        public async Task<BrowserDimension> ResizeMap()
+        public async Task<BrowserDimension> ResizeMap(int width, int height)
         {
-            return await _js.InvokeAsync<BrowserDimension>("ResizeMap");
+            return await _js.InvokeAsync<BrowserDimension>("ResizeMap", new { width, height });
         }
 
         public async Task<MapPosition> GetMapPosition()
