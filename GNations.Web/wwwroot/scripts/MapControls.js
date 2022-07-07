@@ -11,6 +11,10 @@ window.getDimensions = function () {
     };
 };
 
+window.onbeforeunload = function () {
+    return "Data will be lost if you leave the page, are you sure?";
+};
+
 
 $(window).bind("resize", function () {
     // Change the width of the div

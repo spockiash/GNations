@@ -6,6 +6,22 @@
   display: flex;
 }
 
+.dropdown-selector {
+  background-color: #d0d0d0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+  padding: 2px 2px 2px 2px;
+}
+.dropdown-selector .btn-nav-dropdown {
+  min-width: 50px;
+  max-width: 200px;
+  margin: 0 0 1px 0;
+}
+
 .editor-container {
   position: relative;
   height: 720px;

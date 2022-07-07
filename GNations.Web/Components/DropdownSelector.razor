@@ -1,0 +1,34 @@
+﻿@using GNations.Models
+@if(DropdownOptions != null)
+{
+    <div class="dropdown-selector">
+        @foreach (var option in DropdownOptions)
+        {
+            <button  type="button" class="btn-nav-dropdown" id="@option.Id" name="@option.Name">@option.Description</button>
+        }
+    </div>
+
+}
+
+
+@code {
+
+    public List<DropdownSelectorModel>? DropdownOptions { get; set; }
+
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+
+    public void InvokeDropdown(List<DropdownSelectorModel> options)
+    {
+        DropdownOptions = options;
+        Refresh();
+    }
+
+    public void RevokeDropdown()
+    {
+        DropdownOptions = null;
+        Refresh();
+    }
+}

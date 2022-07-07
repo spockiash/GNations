@@ -1,28 +1,75 @@
 ﻿@page "/Editor"
 @using GNations.Models
+@using System.Text
 
 
 <div class="menu-nav menu-nav-up">
-    <button type="button" class="btn-nav-default">Add</button>
+    <button @onclick="DisplayAddMenu" type="button" class="btn-nav-default">Add</button>
+    <button type="button" class="btn-nav-default">Save</button>
 </div>
 
 <div @onclick="ReportPointerLocation" class="editor-container" id="editor">
-    @mousePointerMessage
+    @_promptMessage
     <Continent @ref="ContinentComponent" Continents="@Continents"/>
+    <DropdownSelector @ref="dropdownSelector" />
 </div>
 
 @code {
     public List<ContinentDisplayModel> Continents { get; set; } = new List<ContinentDisplayModel>();
+    public List<DropdownSelectorModel> AddOptions { get; set; } = new List<DropdownSelectorModel>();
 
-    private string? mousePointerMessage;
+    private string? mousePointerMessage = "init";
+    private string? _promptMessage = "init";
+    List<string> _continentImages = new List<string>();
+    int _continentCounter = 0;
 
     protected Continent? ContinentComponent;
+    protected DropdownSelector? dropdownSelector;
+
+    protected override void OnInitialized()
+    {
+        LoadContinents();
+        LoadMenuOptions();
+
+    }
+
+    public void LoadMenuOptions()
+    {
+        AddOptions = EditorManager.GetAddOptions();
+    }
+
+    public void LoadContinents()
+    {
+        _continentImages = ImageRepository.GetContinentImages();
+    }
+
+    private void DisplayAddMenu()
+    {
+        dropdownSelector.InvokeDropdown(AddOptions);
+    }
 
     private void ReportPointerLocation(MouseEventArgs e)
     {
-        mousePointerMessage = $"Mouse coordinates: {e.OffsetX}:{e.OffsetY}";
-        EditorManager.AddContinent(Continents, (int)e.OffsetX, (int)e.OffsetY);
-        ContinentComponent.RefreshGrid();
+        dropdownSelector.RevokeDropdown();
+        var continentCounter = Continents.Count();
+        var countLimit = _continentImages.Count();
+        var sb = new StringBuilder();
+        if(continentCounter < countLimit)
+        {
+            EditorManager.AddContinent(Continents, _continentImages.ToArray(), _continentCounter, (int)e.OffsetX, (int)e.OffsetY);
+            sb.Append($"Continent with id {(_continentCounter+1)} has been added at coordinates {e.OffsetX}:{e.OffsetY}");
+            _continentCounter++;
+        }
+        else
+        {
+            sb.Clear();
+            sb.Append("limit reached");
+        }
+        if(ContinentComponent != null)
+        {
+            _promptMessage = sb.ToString();
+            ContinentComponent.RefreshGrid();
+        }
     }
 
 }

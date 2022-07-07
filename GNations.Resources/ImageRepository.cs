@@ -56,6 +56,15 @@ namespace GNations.Resources
             };
         }
 
+        public static List<string> GetContinentImages()
+        {
+            return new List<string>()
+            {
+                Encoding.Default.GetString(MapResources.Continent2),
+                Encoding.Default.GetString(MapResources.Continent3)
+            };
+        }
+
         public static string GetSingleContinentImage()
         {
             return Encoding.Default.GetString(MapResources.Continent2);
