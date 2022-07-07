@@ -56,6 +56,11 @@ namespace GNations.Resources
             };
         }
 
+        public static string GetSingleContinentImage()
+        {
+            return Encoding.Default.GetString(MapResources.Continent2);
+        }
+
         public static string GetHarborICon()
         {
             return Encoding.Default.GetString(MapResources.icon_anchor);

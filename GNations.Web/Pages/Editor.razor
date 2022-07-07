@@ -1,4 +1,5 @@
 ﻿@page "/Editor"
+@using GNations.Models
 
 
 <div class="menu-nav menu-nav-up">
@@ -7,15 +8,21 @@
 
 <div @onclick="ReportPointerLocation" class="editor-container" id="editor">
     @mousePointerMessage
+    <Continent @ref="ContinentComponent" Continents="@Continents"/>
 </div>
 
 @code {
+    public List<ContinentDisplayModel> Continents { get; set; } = new List<ContinentDisplayModel>();
 
     private string? mousePointerMessage;
+
+    protected Continent? ContinentComponent;
 
     private void ReportPointerLocation(MouseEventArgs e)
     {
         mousePointerMessage = $"Mouse coordinates: {e.OffsetX}:{e.OffsetY}";
+        EditorManager.AddContinent(Continents, (int)e.OffsetX, (int)e.OffsetY);
+        ContinentComponent.RefreshGrid();
     }
 
 }
