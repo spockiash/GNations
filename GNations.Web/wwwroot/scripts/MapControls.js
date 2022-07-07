@@ -54,3 +54,26 @@ function SetMapWidth(currentWidth) {
         $(".map-container").width(currentWidth);
     }
 }
+
+$("#editor").click(function () {
+    alert("Handler for .click() called.");
+});
+
+
+
+function Test() {
+    $("#editor").onmousemove = function (evt) {
+        console.log("asdsfd");
+        var x = evt.pageX - $("#editor").offset().left;
+        var y = evt.pageY - $("#editor").offset().top;
+        console.log(x, y);
+    }
+}
+
+//https://stackoverflow.com/questions/49460516/how-to-do-client-side-ui-events-in-blazor
+
+//https://github.com/cypress-io/cypress/issues/4635
+
+//https://gavilan.blog/2020/05/18/using-events-with-javascript-and-jquery-in-blazor-initializing-libraries/
+
+//https://stackoverflow.com/questions/3234256/find-mouse-position-relative-to-element/42111623#42111623

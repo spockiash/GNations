@@ -8,6 +8,13 @@ body {
     display: flex;
 }
 
+.editor-container {
+    position: relative;
+    height: 720px;
+    width: 1280px;
+    background-color: $ocean;
+}
+
 .map-container {
     height: max-content;
     width: max-content;

@@ -6,6 +6,13 @@
   display: flex;
 }
 
+.editor-container {
+  position: relative;
+  height: 720px;
+  width: 1280px;
+  background-color: aqua;
+}
+
 .map-container {
   height: max-content;
   width: max-content;

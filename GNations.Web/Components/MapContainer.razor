@@ -5,6 +5,7 @@
 @using GNations.Web.Services
 @using Newtonsoft.Json
 @inject BrowserService Service
+@inject NavigationManager NavManager
 
 <div class="game-container">
 
@@ -17,7 +18,7 @@
     <button @onclick="GetDimensions">Get Dimensions</button>*@
 
     <div class="menu-nav menu-nav-up">
-         <button type="button" class="btn-nav-default">Menu 1</button>
+         <button @onclick="LoadEditor" type="button" class="btn-nav-default">Editor</button>
          <button type="button" class="btn-nav-default">Menu 2</button>
          <button type="button" class="btn-nav-default">Menu 3</button>
          <button type="button" class="btn-nav-default">Menu 4</button>
@@ -153,5 +154,10 @@
     {
         _waypoints = ImageRepository.GetWaypoints();
         WaypointHelper.GetWaypointLineCoordinates(_waypoints);
+    }
+
+    public void LoadEditor()
+    {
+        NavManager.NavigateTo("/Editor");
     }
 }
