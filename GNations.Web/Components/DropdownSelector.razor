@@ -4,8 +4,8 @@
     <div class="dropdown-selector">
         @foreach (var option in DropdownOptions)
         {
-            <button  type="button" class="btn-nav-dropdown" id="@option.Id" name="@option.Name">@option.Description</button>
-        }
+            <button  @onclick="@(e => Select(e, option.Id, option.Name ))" type="button" class="btn-nav-dropdown" id="@option.Id" name="@option.Name">@option.Description</button>
+    }
     </div>
 
 }
@@ -14,10 +14,26 @@
 @code {
 
     public List<DropdownSelectorModel>? DropdownOptions { get; set; }
+    [Parameter]
+    public int SelectionId { get; set; } = 0;
+    [Parameter]
+    public string SelectionName { get; set; } = string.Empty;
+    [Parameter]
+    public EventCallback<int> SelectionIdChanged { get; set; }
+    [Parameter]
+    public EventCallback<string> SelectionNameChanged { get; set; }
 
     public void Refresh()
     {
         StateHasChanged();
+    }
+
+    public async Task Select(MouseEventArgs args, int id, string? name)
+    {
+        SelectionId = id;
+        SelectionName = string.IsNullOrEmpty(name) ? string.Empty : name;
+        await SelectionIdChanged.InvokeAsync(SelectionId);
+        await SelectionNameChanged.InvokeAsync(SelectionName);
     }
 
     public void InvokeDropdown(List<DropdownSelectorModel> options)

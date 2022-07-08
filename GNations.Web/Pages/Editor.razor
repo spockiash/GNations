@@ -11,7 +11,7 @@
 <div @onclick="ReportPointerLocation" class="editor-container" id="editor">
     @_promptMessage
     <Continent @ref="ContinentComponent" Continents="@Continents"/>
-    <DropdownSelector @ref="dropdownSelector" />
+    <DropdownSelector @ref="dropdownSelector" @bind-SelectionId="_dropdownSelectionId" @bind-SelectionName="_dropdownSelectionName"/>
 </div>
 
 @code {
@@ -20,8 +20,12 @@
 
     private string? mousePointerMessage = "init";
     private string? _promptMessage = "init";
+    string _dropdownSelectionName = string.Empty;
+
     List<string> _continentImages = new List<string>();
+
     int _continentCounter = 0;
+    int _dropdownSelectionId = 0;
 
     protected Continent? ContinentComponent;
     protected DropdownSelector? dropdownSelector;
