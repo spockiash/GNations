@@ -6,6 +6,34 @@
   display: flex;
 }
 
+.editor-context-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 21px;
+  right: 0;
+  padding: 10px;
+  margin: 5px;
+  background-color: #d0d0d0;
+  border: 1px solid black;
+}
+.editor-context-container form {
+  display: flex;
+  flex-direction: column;
+}
+.editor-context-container form .data-member {
+  display: flex;
+  flex-direction: row;
+  padding: 1px 1px 1px 1px;
+  margin: 0px 3px 0 3px;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-context-container form .data-member input {
+  max-height: 20px;
+  margin-left: 10px;
+}
+
 .dropdown-selector {
   background-color: #d0d0d0;
   display: flex;

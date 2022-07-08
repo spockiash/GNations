@@ -18,6 +18,8 @@
     <Continent @ref="ContinentComponent" Continents="@MapState.Continents"/>
 </div>
 
+<EditorContextMenu />
+
 <DropdownSelector @ref="dropdownSelector" OnDropdownSelection="SelectDropdownItem" @bind-SelectionId="_dropdownSelectionId" @bind-SelectionName="_dropdownSelectionName"/>
 
 @code {
@@ -91,6 +93,7 @@
 
     private void ClearAdd()
     {
+        dropdownSelector.RevokeDropdown();
         _promptMessage = $"Selection cleared";
         AddModel = null;
     }

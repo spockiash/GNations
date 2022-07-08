@@ -1,0 +1,22 @@
+﻿@using GNations.Models
+<div class="editor-context-container">
+    <h2>Editor context</h2>
+    <EditForm Model="@ContextModel">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <span class="data-member">
+            <h4>Left:</h4>
+            <InputNumber @bind-Value="ContextModel.RelativeLeft" />
+        </span>
+        <span class="data-member">
+            <h4>Top:</h4>
+            <InputNumber @bind-Value="ContextModel.RelativeTop" />
+        </span>
+        <button type="submit">Submit</button>
+    </EditForm>
+
+
+</div>
+@code {
+    public MapDisplayBase ContextModel { get; set; } = new MapDisplayBase();
+}
