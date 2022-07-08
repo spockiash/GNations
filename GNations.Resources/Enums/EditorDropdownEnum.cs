@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GNations.Resources.Enums
 {
-    public enum ContinentsEnum
+    public enum EditorDropdownEnum
     {
-        [Description("continent-c2")]
-        Continent2 = 2,
-        [Description("continent-c3")]
-        Continent3 = 3,
+        AddContinent = 1,
+        AddHarbor = 2,
+        AddWaypoint = 3,
+        AddIsland = 4,
     }
 }

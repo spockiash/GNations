@@ -22,6 +22,8 @@
     public EventCallback<int> SelectionIdChanged { get; set; }
     [Parameter]
     public EventCallback<string> SelectionNameChanged { get; set; }
+    [Parameter]
+    public EventCallback<Tuple<int, string?>> OnDropdownSelection { get; set; }
 
     public void Refresh()
     {
@@ -34,6 +36,7 @@
         SelectionName = string.IsNullOrEmpty(name) ? string.Empty : name;
         await SelectionIdChanged.InvokeAsync(SelectionId);
         await SelectionNameChanged.InvokeAsync(SelectionName);
+        await OnDropdownSelection.InvokeAsync(new Tuple<int, string?>(id, name));
     }
 
     public void InvokeDropdown(List<DropdownSelectorModel> options)

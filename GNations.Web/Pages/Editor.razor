@@ -1,22 +1,32 @@
 ﻿@page "/Editor"
 @using GNations.Models
 @using System.Text
+@using GNations.Resources.Enums
+@using GNations.Resources.Helpers
 
 
 <div class="menu-nav menu-nav-up">
     <button @onclick="DisplayAddMenu" type="button" class="btn-nav-default">Add</button>
+    <button @onclick="ClearAdd" type="button" class="btn-nav-default">Clear selection</button>
     <button type="button" class="btn-nav-default">Save</button>
 </div>
 
-<div @onclick="ReportPointerLocation" class="editor-container" id="editor">
+
+
+<div @onclick="EditorClickHandler" class="editor-container" id="editor">
     @_promptMessage
-    <Continent @ref="ContinentComponent" Continents="@Continents"/>
-    <DropdownSelector @ref="dropdownSelector" @bind-SelectionId="_dropdownSelectionId" @bind-SelectionName="_dropdownSelectionName"/>
+    <Continent @ref="ContinentComponent" Continents="@MapState.Continents"/>
 </div>
+
+<DropdownSelector @ref="dropdownSelector" OnDropdownSelection="SelectDropdownItem" @bind-SelectionId="_dropdownSelectionId" @bind-SelectionName="_dropdownSelectionName"/>
 
 @code {
     public List<ContinentDisplayModel> Continents { get; set; } = new List<ContinentDisplayModel>();
     public List<DropdownSelectorModel> AddOptions { get; set; } = new List<DropdownSelectorModel>();
+
+    public MapStateModel MapState { get; set; } = new MapStateModel();
+    public EditorImagesModel ImagesModel { get; set; } = new EditorImagesModel();
+    public EditorAddModel? AddModel { get; set; } = null;
 
     private string? mousePointerMessage = "init";
     private string? _promptMessage = "init";
@@ -44,7 +54,7 @@
 
     public void LoadContinents()
     {
-        _continentImages = ImageRepository.GetContinentImages();
+        ImagesModel.ContinentImages = ImageRepository.GetContinentImages();
     }
 
     private void DisplayAddMenu()
@@ -52,28 +62,44 @@
         dropdownSelector.InvokeDropdown(AddOptions);
     }
 
-    private void ReportPointerLocation(MouseEventArgs e)
+    private void EditorClickHandler(MouseEventArgs e)
+    {
+        if(AddModel != null)
+        {
+            EditorManager.AddItem(AddModel, MapState, ImagesModel, (int)e.OffsetX, (int)e.OffsetY );
+            var selectEnum = (EditorDropdownEnum)AddModel.Selection;
+
+            _promptMessage = AddModel.PromptMessage;
+
+            switch (selectEnum)
+            {
+                case EditorDropdownEnum.AddContinent:
+                    ContinentComponent.RefreshGrid();
+                    break;
+                case EditorDropdownEnum.AddHarbor:
+                    //TODO
+                    break;
+                case EditorDropdownEnum.AddWaypoint:
+                    //TODO
+                    break;
+                case EditorDropdownEnum.AddIsland:
+                    //TODO
+                    break;
+            }
+        }
+    }
+
+    private void ClearAdd()
+    {
+        _promptMessage = $"Selection cleared";
+        AddModel = null;
+    }
+
+    private void SelectDropdownItem(Tuple<int, string?> args)
     {
         dropdownSelector.RevokeDropdown();
-        var continentCounter = Continents.Count();
-        var countLimit = _continentImages.Count();
-        var sb = new StringBuilder();
-        if(continentCounter < countLimit)
-        {
-            EditorManager.AddContinent(Continents, _continentImages.ToArray(), _continentCounter, (int)e.OffsetX, (int)e.OffsetY);
-            sb.Append($"Continent with id {(_continentCounter+1)} has been added at coordinates {e.OffsetX}:{e.OffsetY}");
-            _continentCounter++;
-        }
-        else
-        {
-            sb.Clear();
-            sb.Append("limit reached");
-        }
-        if(ContinentComponent != null)
-        {
-            _promptMessage = sb.ToString();
-            ContinentComponent.RefreshGrid();
-        }
+        _promptMessage = $"Selection: {args.Item2}";
+        AddModel = EditorDropdownHelper.ResolveAddDropdownSelection(args);
     }
 
 }
