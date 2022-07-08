@@ -17,6 +17,9 @@
   background-color: #d0d0d0;
   border: 1px solid black;
 }
+.editor-context-container .btn-submit {
+  margin: 10px 0 5px 0;
+}
 .editor-context-container form {
   display: flex;
   flex-direction: column;

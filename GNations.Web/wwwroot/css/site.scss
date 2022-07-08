@@ -20,6 +20,10 @@ body {
     background-color: $menu-background;
     border: 1px solid black;
 
+    .btn-submit{
+        margin: 10px 0 5px 0;
+    }
+        
     form {
         display: flex;
         flex-direction: column;
