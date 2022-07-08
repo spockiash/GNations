@@ -18,7 +18,7 @@
     <Continent @ref="ContinentComponent" Continents="@MapState.Continents"/>
 </div>
 
-<EditorContextMenu />
+<EditorContextMenu OnPositionChange="ChangeModelPosition"/>
 
 <DropdownSelector @ref="dropdownSelector" OnDropdownSelection="SelectDropdownItem" @bind-SelectionId="_dropdownSelectionId" @bind-SelectionName="_dropdownSelectionName"/>
 
@@ -103,6 +103,11 @@
         dropdownSelector.RevokeDropdown();
         _promptMessage = $"Selection: {args.Item2}";
         AddModel = EditorDropdownHelper.ResolveAddDropdownSelection(args);
+    }
+
+    public void ChangeModelPosition(MapDisplayBase displayModel)
+    {
+        var x = 1;
     }
 
 }

@@ -6,11 +6,11 @@
         <ValidationSummary />
         <span class="data-member">
             <b>Left:</b>
-            <InputNumber @bind-Value="ContextModel.RelativeLeft" />
+            <InputNumber  @bind-Value="ContextModel.RelativeLeft" @oninput="LeftChange" />
         </span>
         <span class="data-member">
             <b>Top:</b>
-            <InputNumber @bind-Value="ContextModel.RelativeTop" />
+            <InputNumber @bind-Value="ContextModel.RelativeTop" @oninput="TopChange"/>
         </span>
         <button type="submit" class="btn-submit">Submit</button>
     </EditForm>
@@ -18,5 +18,26 @@
 
 </div>
 @code {
+    [Parameter]
     public MapDisplayBase ContextModel { get; set; } = new MapDisplayBase();
+    [Parameter]
+    public EventCallback<MapDisplayBase> OnPositionChange { get; set; }
+
+    public async Task LeftChange(ChangeEventArgs args)
+    {
+        if(args.Value != null)
+        {
+            ContextModel.PositionLeft = Convert.ToInt32(args.Value);
+            await OnPositionChange.InvokeAsync(ContextModel);
+        }
+    }
+
+    public async Task TopChange(ChangeEventArgs args)
+    {
+        if(args.Value != null)
+        {
+            ContextModel.RelativeTop = Convert.ToInt32(args.Value);
+            await OnPositionChange.InvokeAsync(ContextModel);
+        }
+    }
 }
