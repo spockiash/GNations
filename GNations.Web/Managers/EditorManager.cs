@@ -24,6 +24,13 @@ namespace GNations.Web.Managers
             }
         }
 
+        public static ContinentDisplayModel AddContinent()
+        {
+            var result = new ContinentDisplayModel();
+            
+            return result;
+        }
+
         public static void AddContinent(List<ContinentDisplayModel> continents, string[] continentImages, int counter, int posX, int posY)
         {
 

@@ -16,6 +16,7 @@
 <div @onclick="EditorClickHandler" class="editor-container" id="editor">
     @_promptMessage
     <Continent @ref="ContinentComponent" Continents="@MapState.Continents"/>
+    <EditorBufferOverlay @ref="BufferOverlay" Continent="@Continent"/>
 </div>
 
 <EditorContextMenu OnPositionChange="ChangeModelPosition"/>
@@ -25,6 +26,8 @@
 @code {
     public List<ContinentDisplayModel> Continents { get; set; } = new List<ContinentDisplayModel>();
     public List<DropdownSelectorModel> AddOptions { get; set; } = new List<DropdownSelectorModel>();
+
+    public ContinentDisplayModel Continent { get; set; } = new ContinentDisplayModel();
 
     public MapStateModel MapState { get; set; } = new MapStateModel();
     public EditorImagesModel ImagesModel { get; set; } = new EditorImagesModel();
@@ -41,6 +44,7 @@
 
     protected Continent? ContinentComponent;
     protected DropdownSelector? dropdownSelector;
+    protected EditorBufferOverlay? BufferOverlay;
 
     protected override void OnInitialized()
     {
