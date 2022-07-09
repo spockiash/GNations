@@ -1,10 +1,10 @@
 ﻿@using GNations.Models
-if(Continent != null)
+@if(Continent != null)
 {
     if (!string.IsNullOrEmpty(Continent.SvgMarkup))
     {
         <div class="continent" style="@Continent.StyleAttribute">
-            @((MarkupString)@Continent.SvgMarkup)
+                @((MarkupString)@Continent.SvgMarkup)
         </div>
     }
 }
@@ -13,6 +13,11 @@ if(Continent != null)
 @code {
     [Parameter]
     public ContinentDisplayModel? Continent { get; set; }
+
+    public void ContinentClicked()
+    {
+        var x = 1;
+    }
 
     public void RefreshGrid()
     {

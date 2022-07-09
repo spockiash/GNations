@@ -19,7 +19,7 @@
     <EditorBufferOverlay @ref="BufferOverlay" Continent="@Continent"/>
 </div>
 
-<EditorContextMenu OnPositionChange="ChangeModelPosition"/>
+<EditorContextMenu @ref="ContextMenu" OnPositionChange="ChangeModelPosition" ContextModel="DisplayBase" />
 
 <DropdownSelector @ref="dropdownSelector" OnDropdownSelection="SelectDropdownItem" @bind-SelectionId="_dropdownSelectionId" @bind-SelectionName="_dropdownSelectionName"/>
 
@@ -32,6 +32,7 @@
     public MapStateModel MapState { get; set; } = new MapStateModel();
     public EditorImagesModel ImagesModel { get; set; } = new EditorImagesModel();
     public EditorAddModel? AddModel { get; set; } = null;
+    public MapDisplayBase DisplayBase { get; set; } = new MapDisplayBase();
 
     private string? mousePointerMessage = "init";
     private string? _promptMessage = "init";
@@ -42,9 +43,12 @@
     int _continentCounter = 0;
     int _dropdownSelectionId = 0;
 
+    bool IsDropdownInvoked = false;
+
     protected Continent? ContinentComponent;
     protected DropdownSelector? dropdownSelector;
     protected EditorBufferOverlay? BufferOverlay;
+    protected EditorContextMenu? ContextMenu;
 
     protected override void OnInitialized()
     {
@@ -65,22 +69,33 @@
 
     private void DisplayAddMenu()
     {
-        dropdownSelector.InvokeDropdown(AddOptions);
+        if(IsDropdownInvoked)
+        {
+            dropdownSelector.RevokeDropdown();
+            IsDropdownInvoked = false;
+        }
+        else
+        {
+            dropdownSelector.InvokeDropdown(AddOptions);
+            IsDropdownInvoked = true;
+        }
     }
 
     private void EditorClickHandler(MouseEventArgs e)
     {
         if(AddModel != null)
         {
-            EditorManager.AddItem(AddModel, MapState, ImagesModel, (int)e.OffsetX, (int)e.OffsetY );
             var selectEnum = (EditorDropdownEnum)AddModel.Selection;
-
             _promptMessage = AddModel.PromptMessage;
 
             switch (selectEnum)
             {
                 case EditorDropdownEnum.AddContinent:
-                    ContinentComponent.RefreshGrid();
+                    Continent = EditorManager.GetSingleContinent(AddModel, MapState, ImagesModel, (int)e.OffsetX, (int)e.OffsetY);
+                    DisplayBase = EditorDropdownHelper.ContinentToBase(Continent);
+                    BufferOverlay.RefreshGrid();
+                    ContextMenu.Refresh();
+                    //ContinentComponent.RefreshGrid();
                     break;
                 case EditorDropdownEnum.AddHarbor:
                     //TODO
@@ -97,20 +112,25 @@
 
     private void ClearAdd()
     {
-        dropdownSelector.RevokeDropdown();
+        if(IsDropdownInvoked)
+        {
+            dropdownSelector.RevokeDropdown();
+        }
         _promptMessage = $"Selection cleared";
         AddModel = null;
     }
 
     private void SelectDropdownItem(Tuple<int, string?> args)
     {
-        dropdownSelector.RevokeDropdown();
         _promptMessage = $"Selection: {args.Item2}";
         AddModel = EditorDropdownHelper.ResolveAddDropdownSelection(args);
+        dropdownSelector.RevokeDropdown();
     }
 
     public void ChangeModelPosition(MapDisplayBase displayModel)
     {
+        EditorDropdownHelper.UpdateContinent(Continent, DisplayBase);
+        BufferOverlay.RefreshGrid();
         var x = 1;
     }
 

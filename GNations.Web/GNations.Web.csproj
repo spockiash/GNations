@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GNations.Dto\GNations.Models.csproj" />
     <ProjectReference Include="..\GNations.Resources\GNations.Resources.csproj" />
+    <ProjectReference Include="..\GNations.Services\GNations.Services.csproj" />
   </ItemGroup>
 
 </Project>

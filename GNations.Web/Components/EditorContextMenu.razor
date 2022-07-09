@@ -23,11 +23,16 @@
     [Parameter]
     public EventCallback<MapDisplayBase> OnPositionChange { get; set; }
 
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+
     public async Task LeftChange(ChangeEventArgs args)
     {
         if(args.Value != null)
         {
-            ContextModel.PositionLeft = Convert.ToInt32(args.Value);
+            ContextModel.RelativeLeft = Convert.ToInt32(args.Value);
             await OnPositionChange.InvokeAsync(ContextModel);
         }
     }

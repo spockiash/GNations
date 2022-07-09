@@ -24,16 +24,31 @@ namespace GNations.Web.Managers
             }
         }
 
-        public static ContinentDisplayModel AddContinent()
+        public static ContinentDisplayModel GetSingleContinent(EditorAddModel addModel, MapStateModel mapState, EditorImagesModel images, int posX, int posY)
         {
-            var result = new ContinentDisplayModel();
-            
-            return result;
+            if (addModel.AddContinent != null && images.ContinentImages != null)
+            {
+                var continentCounter = mapState.Continents.Count;
+                var continentLimit = images.ContinentImages.Count;
+                if (continentCounter < continentLimit)
+                {
+                    AddContinent(mapState.Continents, images.ContinentImages.ToArray(), continentCounter, posX, posY);
+                    addModel.PromptMessage = $"Continent added at coordinates {posX}:{posY}";
+                }
+                else
+                {
+                    addModel.PromptMessage = $"Limit reached";
+                }
+            }
+
+            var returnVal = mapState.Continents.Last();
+            mapState.Continents.Remove(returnVal);
+            return returnVal;
         }
+
 
         public static void AddContinent(List<ContinentDisplayModel> continents, string[] continentImages, int counter, int posX, int posY)
         {
-
             continents.Add(new ContinentDisplayModel()
             {
                 SvgMarkup = continentImages[counter],

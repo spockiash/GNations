@@ -14,7 +14,6 @@ namespace GNations.Resources.Helpers
         {
             var selectedOption = (EditorDropdownEnum)selection.Item1;
             var returnItem = new EditorAddModel();
-            returnItem.Selection = selection.Item1;
             switch (selectedOption)
             {
                 case EditorDropdownEnum.AddContinent:
@@ -30,8 +29,27 @@ namespace GNations.Resources.Helpers
                     returnItem = new EditorAddModel(new ContinentDisplayModel());
                     break;
             }
-
+            returnItem.Selection = selection.Item1;
             return returnItem;
+        }
+
+
+        public static MapDisplayBase ContinentToBase(ContinentDisplayModel continent)
+        {
+            return new MapDisplayBase()
+            {
+                RelativeLeft = continent.RelativeLeft,
+                RelativeTop = continent.RelativeTop
+            };
+        }
+
+        public static void UpdateContinent(ContinentDisplayModel continent, MapDisplayBase baseModel)
+        {
+            continent.RelativeLeft = baseModel.RelativeLeft;
+            continent.PositionLeft = baseModel.RelativeLeft;
+            continent.RelativeTop = baseModel.RelativeTop;
+            continent.PositionTop = baseModel.RelativeTop;
+            continent.StyleAttribute = DisplayHelper.GetStyleAttributesForPosition(baseModel.RelativeTop, baseModel.RelativeLeft);
         }
     }
 }
