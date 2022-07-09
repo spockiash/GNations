@@ -19,7 +19,7 @@
     <EditorBufferOverlay @ref="BufferOverlay" Continent="@Continent"/>
 </div>
 
-<EditorContextMenu @ref="ContextMenu" OnPositionChange="ChangeModelPosition" ContextModel="DisplayBase" />
+<EditorContextMenu @ref="ContextMenu" OnPositionChange="ChangeModelPosition" ContextModel="DisplayBase" OnFormSubmit="PushItem"/>
 
 <DropdownSelector @ref="dropdownSelector" OnDropdownSelection="SelectDropdownItem" @bind-SelectionId="_dropdownSelectionId" @bind-SelectionName="_dropdownSelectionName"/>
 
@@ -131,7 +131,32 @@
     {
         EditorDropdownHelper.UpdateContinent(Continent, DisplayBase);
         BufferOverlay.RefreshGrid();
+        ContinentComponent.RefreshGrid();
         var x = 1;
+    }
+
+    public void PushItem(MapDisplayBase displayModel)
+    {
+        var c = EditorDropdownHelper.UpdateContinent(Continent, DisplayBase);
+        var cont = new ContinentDisplayModel()
+            {
+                EnumNo = Continent.EnumNo,
+                SvgMarkup = Continent.SvgMarkup,
+                PositionLeft = Continent.PositionLeft,
+                PositionTop = Continent.PositionTop,
+                RelativeLeft = Continent.RelativeLeft,
+                RelativeTop = Continent.RelativeTop,
+                StyleAttribute = Continent.StyleAttribute,
+                ScaleLeft = Continent.ScaleLeft,
+                ScaleTop = Continent.ScaleTop,
+                BaseHeight = Continent.BaseHeight,
+                BaseScale = Continent.BaseScale,
+                BaseWidth = Continent.BaseWidth
+            };
+        MapState.Continents.Add(cont);
+        DisplayBase = new MapDisplayBase();
+        AddModel = null;
+        ContinentComponent.RefreshGrid();
     }
 
 }

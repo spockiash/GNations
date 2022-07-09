@@ -15,5 +15,6 @@ namespace GNations.Models
         public int RelativeLeft { get; set; }
         public int PositionTop { get; set; }
         public int PositionLeft { get; set; }
+        public float BaseScale { get; set; }
     }
 }

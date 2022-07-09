@@ -1,7 +1,7 @@
 ﻿@using GNations.Models
 <div class="editor-context-container">
     <h2>Editor context</h2>
-    <EditForm Model="@ContextModel">
+    <EditForm Model="@ContextModel" OnValidSubmit="Submit" >
         <DataAnnotationsValidator />
         <ValidationSummary />
         <span class="data-member">
@@ -11,6 +11,10 @@
         <span class="data-member">
             <b>Top:</b>
             <InputNumber @bind-Value="ContextModel.RelativeTop" @oninput="TopChange"/>
+        </span>
+        <span class="data-member">
+            <b>Scale:</b>
+            <InputNumber @bind-Value="ContextModel.BaseScale" @oninput="ScaleChange"/>
         </span>
         <button type="submit" class="btn-submit">Submit</button>
     </EditForm>
@@ -22,10 +26,17 @@
     public MapDisplayBase ContextModel { get; set; } = new MapDisplayBase();
     [Parameter]
     public EventCallback<MapDisplayBase> OnPositionChange { get; set; }
+    [Parameter]
+    public EventCallback<MapDisplayBase> OnFormSubmit { get; set; }
 
     public void Refresh()
     {
         StateHasChanged();
+    }
+
+    public async Task Submit()
+    {
+        await OnFormSubmit.InvokeAsync(ContextModel);
     }
 
     public async Task LeftChange(ChangeEventArgs args)
@@ -42,6 +53,15 @@
         if(args.Value != null)
         {
             ContextModel.RelativeTop = Convert.ToInt32(args.Value);
+            await OnPositionChange.InvokeAsync(ContextModel);
+        }
+    }
+
+    public async Task ScaleChange(ChangeEventArgs args)
+    {
+        if(args.Value != null)
+        {
+            ContextModel.BaseScale = (float)Convert.ToDouble(args.Value);
             await OnPositionChange.InvokeAsync(ContextModel);
         }
     }

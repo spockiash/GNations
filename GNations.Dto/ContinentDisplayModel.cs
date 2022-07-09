@@ -17,5 +17,6 @@
         public float ScaleLeft { get; set; }
         public int BaseWidth { get; set; }
         public int BaseHeight { get; set; }
+        public float BaseScale { get; set; }
     }
 }

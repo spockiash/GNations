@@ -39,17 +39,22 @@ namespace GNations.Resources.Helpers
             return new MapDisplayBase()
             {
                 RelativeLeft = continent.RelativeLeft,
-                RelativeTop = continent.RelativeTop
+                RelativeTop = continent.RelativeTop,
+                BaseScale = continent.BaseScale
             };
         }
 
-        public static void UpdateContinent(ContinentDisplayModel continent, MapDisplayBase baseModel)
+        public static ContinentDisplayModel UpdateContinent(ContinentDisplayModel continent, MapDisplayBase baseModel)
         {
+            var sb = new StringBuilder();
+            sb.Append(DisplayHelper.GetStyleAttributesForPosition(baseModel.RelativeTop, baseModel.RelativeLeft));
+            sb.Append(DisplayHelper.GetStyleAttributesForScaling(baseModel.BaseScale, 0));
             continent.RelativeLeft = baseModel.RelativeLeft;
             continent.PositionLeft = baseModel.RelativeLeft;
             continent.RelativeTop = baseModel.RelativeTop;
             continent.PositionTop = baseModel.RelativeTop;
-            continent.StyleAttribute = DisplayHelper.GetStyleAttributesForPosition(baseModel.RelativeTop, baseModel.RelativeLeft);
+            continent.StyleAttribute = sb.ToString();
+            return continent;
         }
     }
 }

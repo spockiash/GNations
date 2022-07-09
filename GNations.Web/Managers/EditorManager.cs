@@ -57,6 +57,7 @@ namespace GNations.Web.Managers
                 RelativeTop = posY,
                 PositionLeft = posX,
                 PositionTop = posY,
+                BaseScale = 1.00f,
             });
 
         }
