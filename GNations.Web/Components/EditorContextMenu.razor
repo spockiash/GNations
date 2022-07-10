@@ -12,10 +12,13 @@
             <b>Top:</b>
             <InputNumber @bind-Value="ContextModel.RelativeTop" @oninput="TopChange"/>
         </span>
-        <span class="data-member">
-            <b>Scale:</b>
-            <InputNumber @bind-Value="ContextModel.BaseScale" @oninput="ScaleChange"/>
-        </span>
+        @if (ContextModel.DisplayScaleInput)
+        {
+            <span class="data-member">
+                <b>Scale:</b>
+                <InputNumber @bind-Value="ContextModel.BaseScale" @oninput="ScaleChange"/>
+            </span>
+        }
         <button type="submit" class="btn-submit">Submit</button>
     </EditForm>
 

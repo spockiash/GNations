@@ -58,7 +58,7 @@
   position: relative;
   height: 720px;
   width: 1280px;
-  background-color: aqua;
+  background-color: #030017;
 }
 
 .map-container {
@@ -107,7 +107,7 @@
 }
 
 .map-container {
-  background-color: aqua;
+  background-color: #030017;
 }
 
 #blazor-error-ui {

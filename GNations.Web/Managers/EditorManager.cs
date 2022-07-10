@@ -24,6 +24,27 @@ namespace GNations.Web.Managers
             }
         }
 
+        public static HarborDisplayModel GetHarborModel(int posX, int posY)
+        {
+            var imageMarkup = ImageRepository.GetHarborICon();
+            var styleAttribute = DisplayHelper.GetStyleAttributesForPosition(posY, posX);
+            return new HarborDisplayModel()
+            {
+                Id = 0,
+                Left = posX,
+                Top = posY,
+                SvgMarkup = imageMarkup,
+                StyleAttribute = styleAttribute
+            };
+        }
+
+        public static void RepositionHarbor(HarborDisplayModel harbor, int posX, int posY)
+        {
+            harbor.Left = posX;
+            harbor.Top = posY;
+            harbor.StyleAttribute = DisplayHelper.GetStyleAttributesForPosition(posY, posX);
+        }
+
         public static ContinentDisplayModel GetSingleContinent(EditorAddModel addModel, MapStateModel mapState, EditorImagesModel images, int posX, int posY)
         {
             if (addModel.AddContinent != null && images.ContinentImages != null)
@@ -58,6 +79,7 @@ namespace GNations.Web.Managers
                 PositionLeft = posX,
                 PositionTop = posY,
                 BaseScale = 1.00f,
+                EnumNo = 8
             });
 
         }

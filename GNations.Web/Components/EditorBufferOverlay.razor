@@ -9,15 +9,23 @@
     }
 }
 
+@if(EditorModel != null && EditorModel.AddHarbor != null)
+{
+    if (!string.IsNullOrEmpty(EditorModel.AddHarbor.SvgMarkup))
+    {
+        <div class="continent" style="@EditorModel.AddHarbor.StyleAttribute">
+                @((MarkupString)@EditorModel.AddHarbor.SvgMarkup)
+        </div>
+    }
+}
+
 
 @code {
     [Parameter]
     public ContinentDisplayModel? Continent { get; set; }
 
-    public void ContinentClicked()
-    {
-        var x = 1;
-    }
+    [Parameter]
+    public EditorAddModel EditorModel { get; set; } = new EditorAddModel();
 
     public void RefreshGrid()
     {

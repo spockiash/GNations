@@ -55,7 +55,7 @@ namespace GNations.Web.Managers
 
             var sb = new StringBuilder();
             sb.Append($"<svg viewBox='0 0 {width} {heigth}' xmlns='http://www.w3.org/2000/svg'>");
-            sb.Append("<g fill='black' stroke='black' stroke-width='0.25'>");
+            sb.Append("<g fill='black' stroke='aqua' stroke-width='0.25'>");
             //number of vertical cells
             var horPos = 0;
             for (int i = 0; i < GameConstants.gridHorizontalLines - 1; i++)

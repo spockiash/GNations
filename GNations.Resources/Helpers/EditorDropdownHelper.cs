@@ -40,7 +40,18 @@ namespace GNations.Resources.Helpers
             {
                 RelativeLeft = continent.RelativeLeft,
                 RelativeTop = continent.RelativeTop,
-                BaseScale = continent.BaseScale
+                BaseScale = continent.BaseScale,
+                DisplayScaleInput = true
+            };
+        }
+
+        public static MapDisplayBase HarborToBase(HarborDisplayModel harbor)
+        {
+            return new MapDisplayBase()
+            {
+                RelativeLeft = harbor.Left,
+                RelativeTop = harbor.Top,
+                DisplayScaleInput = false
             };
         }
 

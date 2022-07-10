@@ -16,5 +16,6 @@ namespace GNations.Models
         public int PositionTop { get; set; }
         public int PositionLeft { get; set; }
         public float BaseScale { get; set; }
+        public bool DisplayScaleInput { get; set; }
     }
 }

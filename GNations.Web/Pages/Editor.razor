@@ -16,7 +16,7 @@
 <div @onclick="EditorClickHandler" class="editor-container" id="editor">
     @_promptMessage
     <Continent @ref="ContinentComponent" Continents="@MapState.Continents"/>
-    <EditorBufferOverlay @ref="BufferOverlay" Continent="@Continent"/>
+    <EditorBufferOverlay @ref="BufferOverlay" Continent="@Continent" EditorModel="AddModel"/>
 </div>
 
 <EditorContextMenu @ref="ContextMenu" OnPositionChange="ChangeModelPosition" ContextModel="DisplayBase" OnFormSubmit="PushItem"/>
@@ -95,15 +95,27 @@
                     DisplayBase = EditorDropdownHelper.ContinentToBase(Continent);
                     BufferOverlay.RefreshGrid();
                     ContextMenu.Refresh();
+                    dropdownSelector.RevokeDropdown();
+                    IsDropdownInvoked = false;
                     //ContinentComponent.RefreshGrid();
                     break;
                 case EditorDropdownEnum.AddHarbor:
+                    AddModel = new EditorAddModel(EditorManager.GetHarborModel((int)e.OffsetX, (int)e.OffsetY));
+                    DisplayBase = EditorDropdownHelper.HarborToBase(AddModel.AddHarbor);
+                    BufferOverlay.RefreshGrid();
+                    ContextMenu.Refresh();
+                    dropdownSelector.RevokeDropdown();
+                    IsDropdownInvoked = false;
                     //TODO
                     break;
                 case EditorDropdownEnum.AddWaypoint:
+                    dropdownSelector.RevokeDropdown();
+                    IsDropdownInvoked = false;
                     //TODO
                     break;
                 case EditorDropdownEnum.AddIsland:
+                    dropdownSelector.RevokeDropdown();
+                    IsDropdownInvoked = false;
                     //TODO
                     break;
             }
@@ -125,13 +137,14 @@
         _promptMessage = $"Selection: {args.Item2}";
         AddModel = EditorDropdownHelper.ResolveAddDropdownSelection(args);
         dropdownSelector.RevokeDropdown();
+        IsDropdownInvoked = false;
     }
 
     public void ChangeModelPosition(MapDisplayBase displayModel)
     {
         EditorDropdownHelper.UpdateContinent(Continent, DisplayBase);
         BufferOverlay.RefreshGrid();
-        ContinentComponent.RefreshGrid();
+        ContinentComponent.Refresh();
         var x = 1;
     }
 
@@ -156,7 +169,7 @@
         MapState.Continents.Add(cont);
         DisplayBase = new MapDisplayBase();
         AddModel = null;
-        ContinentComponent.RefreshGrid();
+        ContinentComponent.Refresh();
     }
 
 }

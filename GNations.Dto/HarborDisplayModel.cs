@@ -12,6 +12,6 @@ namespace GNations.Models
         public int Top { get; set; }
         public int Left { get; set; }
         public string SvgMarkup { get; set; }
-        public string StyleClass { get; set; }
+        public string StyleAttribute { get; set; }
     }
 }

@@ -34,7 +34,7 @@
 
         @foreach(var port in _harbors)
         {
-            <div class="harbor @port.StyleClass">
+            <div class="harbor @port.StyleAttribute">
                 @((MarkupString)port.SvgMarkup);
             </div>
         }
@@ -136,7 +136,7 @@
 
         if(ContinentComponent != null)
         {
-            ContinentComponent.RefreshGrid();
+            ContinentComponent.Refresh();
         }
     }
 

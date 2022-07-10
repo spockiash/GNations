@@ -60,6 +60,7 @@ namespace GNations.Resources
         {
             return new List<string>()
             {
+                Encoding.Default.GetString(MapResources.C4),
                 Encoding.Default.GetString(MapResources.Continent2),
                 Encoding.Default.GetString(MapResources.Continent3)
             };
@@ -91,7 +92,7 @@ namespace GNations.Resources
                     SvgMarkup = harborIcon,
                     Top = 171,
                     Left = 208,
-                    StyleClass = GetMatchedClass(1,"harbor")
+                    StyleAttribute = GetMatchedClass(1,"harbor")
                 },
                 new HarborDisplayModel
                 {
@@ -99,8 +100,9 @@ namespace GNations.Resources
                     SvgMarkup = harborIcon,
                     Top = 200,
                     Left = 400,
-                    StyleClass = GetMatchedClass(2,"harbor")
+                    StyleAttribute = GetMatchedClass(2,"harbor")
                 },
+                
             };
         }
 
@@ -108,6 +110,8 @@ namespace GNations.Resources
         {
             var result = new List<ContinentDisplayModel>();
             var styleClasses = GetStyleClassesDictionary();
+
+
 
             result.Add(new ContinentDisplayModel
             {

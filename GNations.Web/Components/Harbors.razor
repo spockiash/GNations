@@ -1,0 +1,24 @@
+﻿@using GNations.Models
+
+@foreach(var port in HarborList)
+{
+    <div class="harbor @port.StyleAttribute">
+        @((MarkupString)port.SvgMarkup);
+    </div>
+}
+
+@code {
+    [Parameter]
+    public List<HarborDisplayModel> HarborList { get; set; } = new List<HarborDisplayModel>();
+
+
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+
+    public void ContinentClickEvent(MouseEventArgs args, int id)
+    {
+        StateHasChanged();
+    }
+}

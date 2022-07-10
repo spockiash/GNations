@@ -5,7 +5,7 @@
     {
         if (!string.IsNullOrEmpty(item.SvgMarkup))
         {
-            <div class="continent" style="@item.StyleAttribute">
+            <div @onclick="@(e => ContinentClickEvent(e, item.EnumNo))" class="continent" style="@item.StyleAttribute">
                 @((MarkupString)@item.SvgMarkup)
             </div>
         }
@@ -18,7 +18,12 @@
     [Parameter]
     public List<ContinentDisplayModel>? Continents { get; set; }
 
-    public void RefreshGrid()
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+
+    public void ContinentClickEvent(MouseEventArgs args, int id)
     {
         StateHasChanged();
     }
