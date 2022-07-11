@@ -15,6 +15,7 @@
 
 <div @onclick="EditorClickHandler" class="editor-container" id="editor">
     @_promptMessage
+    <MapGrid @ref="GridComponent" GridMarkup="@_mapGridMarkup"/>
     <Continent @ref="ContinentComponent" Continents="@MapState.Continents"/>
     <EditorBufferOverlay @ref="BufferOverlay" Continent="@Continent" EditorModel="AddModel"/>
 </div>
@@ -36,6 +37,7 @@
 
     private string? mousePointerMessage = "init";
     private string? _promptMessage = "init";
+    public string _mapGridMarkup = string.Empty;
     string _dropdownSelectionName = string.Empty;
 
     List<string> _continentImages = new List<string>();
@@ -45,6 +47,7 @@
 
     bool IsDropdownInvoked = false;
 
+    protected MapGrid? GridComponent;
     protected Continent? ContinentComponent;
     protected DropdownSelector? dropdownSelector;
     protected EditorBufferOverlay? BufferOverlay;
@@ -52,9 +55,19 @@
 
     protected override void OnInitialized()
     {
+        InitializeGrid();
         LoadContinents();
         LoadMenuOptions();
 
+    }
+
+    public void InitializeGrid()
+    {
+        _mapGridMarkup = MapManager.GetMapGrid(1280, 720, 21, 0);
+        if(GridComponent != null)
+        {
+            GridComponent.Refresh(_mapGridMarkup);
+        }
     }
 
     public void LoadMenuOptions()

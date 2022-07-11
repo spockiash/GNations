@@ -1,16 +1,14 @@
-﻿@((MarkupString)_gridMarkup);
+﻿@((MarkupString)GridMarkup);
 
 @code {
-    private string _gridMarkup = string.Empty;
 
     [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    public string GridMarkup { get; set; }
 
 
-
-    public void RefreshGrid(string gridMarkup)
+    public void Refresh(string param)
     {
-        _gridMarkup = gridMarkup;
+        GridMarkup = param;
         StateHasChanged();
     }
 }

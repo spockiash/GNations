@@ -1,4 +1,5 @@
 ﻿@using GNations.Models
+@using System.Globalization
 <div class="editor-context-container">
     <h2>Editor context</h2>
     <EditForm Model="@ContextModel" OnValidSubmit="Submit" >
@@ -64,7 +65,7 @@
     {
         if(args.Value != null)
         {
-            ContextModel.BaseScale = (float)Convert.ToDouble(args.Value);
+            ContextModel.BaseScale = float.Parse((string)args.Value, CultureInfo.InvariantCulture);
             await OnPositionChange.InvokeAsync(ContextModel);
         }
     }
