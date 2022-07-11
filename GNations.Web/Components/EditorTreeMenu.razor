@@ -2,14 +2,47 @@
     <div class="menu-header">
         Header and options here
     </div>
-    <div class="tree-item">
-        <button type="button">downArrow</button>
-        Menu item here
-        <div class="tree-subitem">
-            Subitem here
+    <div class="tree-body">
+        <div class="tree-item">
+            <a name="c1"><span>🌏 Continent 1</span></a>
+            <div class="subitem-container">
+                <div class="tree-subitem">
+                    <a name="h1"><span>⚓ Harbor 1</span></a>
+                </div>
+                <div class="tree-subitem">
+                    <span>⚓ Harbor 2</span>
+                </div>
+                <div class="tree-subitem">
+                    <span>🛢 Resource well</span>
+                </div>
+            </div>
+        </div>
+        <div class="tree-item-striped">
+            <span>🌏 Continent 2</span>
+            <div class="subitem-container">
+                <div class="tree-subitem">
+                    <span>⚓ Harbor 1</span>
+                </div>
+                <div class="tree-subitem">
+                    <span>⚓ Harbor 2</span>
+                </div>
+                <div class="tree-subitem">
+                    <span>🛢 Resource well</span>
+                </div>
+            </div>
+        </div>
+        <div class="tree-item">
+            <span>⎈ Waypoint 1</span>
+        </div>
+        <div class="tree-item-striped">
+            <span>⎈ Waypoint 2</span>
+        </div>
+        <div class="tree-item">
+            <span>⎈ Waypoint 3</span>
         </div>
     </div>
 </div>
+
 @code {
     private string downArrow = "&#5121";
 }

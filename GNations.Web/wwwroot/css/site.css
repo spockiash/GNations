@@ -6,6 +6,40 @@
   display: flex;
 }
 
+.editor-tree-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: #d0d0d0;
+  position: fixed;
+  top: 21px;
+  right: 300px;
+  width: 200px;
+  border: 1px solid black;
+}
+.editor-tree-menu .menu-header {
+  display: flex;
+  flex-direction: row;
+}
+.editor-tree-menu .tree-body {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: white;
+  margin: 10px;
+}
+.editor-tree-menu .tree-body hr {
+  color: red;
+}
+.editor-tree-menu .tree-body .tree-item {
+  margin: 2px;
+}
+.editor-tree-menu .tree-body .tree-item .subitem-container {
+  padding: 0 0 0 20px;
+}
+.editor-tree-menu .tree-body .tree-item-striped {
+  background-color: #fef8be;
+}
+
 .editor-context-container {
   display: flex;
   flex-direction: column;

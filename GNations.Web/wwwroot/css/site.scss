@@ -1,5 +1,6 @@
 ﻿$ocean: #030017;
 $menu-background: #d0d0d0;
+$yellow-band: #fef8be;
 
 body {
     margin: 0px !important;
@@ -7,6 +8,46 @@ body {
 
 .menu-nav {
     display: flex;
+}
+
+.editor-tree-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: $menu-background;
+    position: fixed;
+    top: 21px;
+    right: 300px;
+    width: 200px;
+    border: 1px solid black;
+
+    .menu-header {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .tree-body {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        background-color: white;
+        margin: 10px;
+
+        hr {
+            color: red;
+        }
+
+        .tree-item {
+            margin: 2px;
+
+            .subitem-container {
+                padding: 0 0 0 20px;
+            }
+        }
+
+        .tree-item-striped {
+            background-color: $yellow-band;
+        }
+    }
 }
 
 .editor-context-container {
@@ -20,10 +61,10 @@ body {
     background-color: $menu-background;
     border: 1px solid black;
 
-    .btn-submit{
+    .btn-submit {
         margin: 10px 0 5px 0;
     }
-        
+
     form {
         display: flex;
         flex-direction: column;
